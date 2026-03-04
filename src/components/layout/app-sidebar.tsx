@@ -6,7 +6,11 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { APP_CONFIG } from "@/lib/config";
 import {
-  LayoutDashboard,
+  ShieldCheck,
+  ClipboardList,
+  FolderLock,
+  ScrollText,
+  Building2,
   ChevronLeft,
   ChevronRight,
   Lightbulb,
@@ -22,10 +26,14 @@ import {
 // Replace the icon in SidebarLogo if needed (import from lucide-react).
 // ═══════════════════════════════════════════════════════════════════════════
 
+// Nav items use domain vocabulary from the Creative Brief + Domain Brief.
+// Labels match what compliance officers actually call these modules.
 const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  // Dashboard Builder agent: add 3-5 feature page nav items here.
-  // Example: { href: "/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/",                    label: "Risk Overview",       icon: ShieldCheck },
+  { href: "/intake",              label: "Intake & Assessment", icon: ClipboardList },
+  { href: "/documents",           label: "Document Vault",      icon: FolderLock },
+  { href: "/audit-trail",         label: "Audit Trail",         icon: ScrollText },
+  { href: "/organizations",       label: "Organizations",       icon: Building2 },
 ];
 
 function SidebarLogo({ collapsed }: { collapsed: boolean }) {

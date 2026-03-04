@@ -42,14 +42,21 @@ export type DeviceModel =
 // The Creative Director researches the client's domain, competitors, and brand
 // signals to select the aesthetic and format. No routing table — decisions are
 // evidence-backed and documented in the Creative Brief.
+//
+// Creative Brief: Healthcare Compliance SaaS
+// Aesthetic: saas-modern — SaaS Modern with deep teal primary
+// Rationale: Every major competitor (Healthicity, MedTrainer, Compliancy Group,
+//   Compliatric, MetricStream) uses light theme + teal/navy-teal as trust anchor.
+//   SaaS Modern matches the modern compliance software register without the
+//   coldness of Corporate Enterprise or the consumer feel of Warm Organic.
 
 export const APP_CONFIG = {
-  appName: "App Name",                       // Display name (sidebar header, page title)
-  projectName: "Project Name",               // Client's product name (tab bar microtext, footer)
-  clientName: null as string | null,         // Client first name, or null — never render "null"
-  domain: "tech",                            // Domain (finance, health, marketplace, tech, etc.)
-  aesthetic: "linear" as AestheticProfile,   // Drives data-theme="..." on <html>
-  demoFormat: "dashboard-app" as DemoFormat,          // Layout architecture for Tab 1
-  deviceModel: undefined as DeviceModel | undefined,  // Device frame model (frame formats only)
-  screenCount: undefined as number | undefined,       // Number of screens in frame demos
+  appName: "ComplianceHub",                    // Display name (sidebar header, page title)
+  projectName: "Healthcare Compliance SaaS",  // Client's product name (tab bar microtext, footer)
+  clientName: null as string | null,           // Greenfield — no discoverable client name
+  domain: "healthcare-compliance",             // Domain classification
+  aesthetic: "saas-modern" as AestheticProfile, // Drives data-theme="..." on <html>
+  demoFormat: "dashboard-app" as DemoFormat,   // Layout architecture for Tab 1
+  deviceModel: undefined as DeviceModel | undefined,  // Not used for dashboard-app format
+  screenCount: undefined as number | undefined,       // Not used for dashboard-app format
 } as const;

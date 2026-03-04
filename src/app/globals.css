@@ -89,87 +89,101 @@
    Layout Builder overrides color tokens per domain.
    Aesthetic [data-theme] blocks below override all other tokens.
    ============================================================ */
+
+/* ── AESTHETIC: saas-modern / DOMAIN: healthcare-compliance ──
+   Creative rationale: Every major competitor (Healthicity, MedTrainer,
+   Compliancy Group, Compliatric, MetricStream) uses light theme + teal
+   as the trust anchor. Deep teal oklch(0.52 0.14 195) sits squarely in
+   the hue range shared by all five — it reads "clinical competence" to
+   compliance officers the same way dark reads "serious tooling" to SOC
+   analysts. SaaS Modern with structured density matches the modern
+   compliance software register without looking like a legacy portal.
+   Motion: snappy 120-150ms ease-out — responsive, not theatrical.    */
+
 :root {
   /* ── Border Radius ───────────────────────────────────────────
-     Profiles: sharp = 0.25rem | standard = 0.5rem | rounded = 0.75rem
-     Layout Builder sets to match domain personality.            */
+     Medium (0.5rem) — professional midpoint between sharp enterprise
+     corners (Compliancy Group 11px) and consumer-rounded softness.
+     Signals competence without coldness.                        */
   --radius: 0.5rem;
 
   /* ── Base Surfaces ───────────────────────────────────────── */
-  --background: oklch(1 0 0);
+  --background: oklch(0.985 0.003 195);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --surface-hover: oklch(0.96 0 0);
-  --surface-active: oklch(0.94 0 0);
+  --surface-hover: oklch(0.955 0.006 195);
+  --surface-active: oklch(0.935 0.009 195);
 
-  /* ── Primary Color ───────────────────────────────────────────
-     !! OVERRIDE REQUIRED — Layout Builder must replace --primary and
-        --primary-h with domain-appropriate oklch values.
-        See the Creative Brief's colorDirection for the target color.
-        QA rejects builds where --primary stays oklch(0.205 0 0). !! */
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --primary-h: 270; /* Integer hue extracted from --primary */
+  /* ── Primary Color: Deep Teal ────────────────────────────────
+     oklch(0.52 0.14 195) — convergent healthcare compliance trust color.
+     Hue 195 lands in the 185-210 range shared by Healthicity (#00BCD4),
+     MedTrainer (#4ea0ca), and SAI360 (#00856c). Chroma 0.14 is saturated
+     enough to be distinctive on white without reading as consumer/playful. */
+  --primary: oklch(0.52 0.14 195);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-h: 195;
 
   /* ── Derived Color Tokens ────────────────────────────────── */
   --section-dark: oklch(0.10 0.02 var(--primary-h));
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --muted-foreground: oklch(0.52 0 0);
+  --accent: oklch(0.60 0.12 195);
+  --accent-foreground: oklch(0.15 0.03 195);
 
-  /* ── Semantic Colors ─────────────────────────────────────── */
-  --destructive: oklch(0.577 0.245 27.325);
-  --success: oklch(0.627 0.194 149.214);
+  /* ── Semantic Colors ─────────────────────────────────────────
+     Status color discipline: sharp and unambiguous for compliance scanning.
+     Red = Excluded/Critical, Amber = At-Risk/Expiring, Green = Compliant.  */
+  --destructive: oklch(0.55 0.22 25);
+  --success: oklch(0.62 0.17 145);
   --success-foreground: oklch(0.985 0 0);
-  --warning: oklch(0.769 0.188 70.08);
+  --warning: oklch(0.75 0.18 85);
   --warning-foreground: oklch(0.205 0 0);
 
   /* ── Borders & Inputs ────────────────────────────────────── */
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.905 0.008 195);
+  --input: oklch(0.905 0.008 195);
+  --ring: oklch(0.52 0.14 195);
 
   /* ── Chart Colors ────────────────────────────────────────────
-     Layout Builder harmonizes to primary hue. See design-system.md. */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+     Harmonized to teal hue family. Chart-3/4/5 double as semantic
+     colors for compliance score tiers (green/amber/red).
+     chart-1: primary teal | chart-2: blue-teal (+15 hue)
+     chart-3: green (pass/compliant) | chart-4: amber (at-risk)
+     chart-5: red (critical/excluded)                            */
+  --chart-1: oklch(0.52 0.14 195);
+  --chart-2: oklch(0.62 0.13 210);
+  --chart-3: oklch(0.62 0.17 145);
+  --chart-4: oklch(0.75 0.18 85);
+  --chart-5: oklch(0.55 0.22 25);
 
   /* ── Sidebar Colors ──────────────────────────────────────────
-     After color override: --sidebar-primary and --sidebar-ring
-     should match --primary.                                     */
-  --sidebar: oklch(0.985 0 0);
+     Matches primary teal. sidebar-primary = --primary.          */
+  --sidebar: oklch(0.98 0.005 195);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-primary: oklch(0.52 0.14 195);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.955 0.006 195);
+  --sidebar-accent-foreground: oklch(0.145 0 0);
+  --sidebar-border: oklch(0.905 0.008 195);
+  --sidebar-ring: oklch(0.52 0.14 195);
 
   /* ── Surface / Card Tokens ───────────────────────────────────
-     Driven by [data-theme] aesthetic — not overridden per domain.
-     .linear-card and .aesthetic-card read these.                */
+     SaaS Modern card treatment: subtle border + soft shadow.
+     Hover: slight lift (translateY -1px) + deeper shadow.       */
   --card-border-width: 1px;
-  --card-shadow: none;
-  --card-shadow-hover: none;
+  --card-shadow: 0 1px 3px oklch(0 0 0 / 0.07), 0 1px 2px oklch(0 0 0 / 0.04);
+  --card-shadow-hover: 0 4px 12px oklch(0 0 0 / 0.10), 0 2px 4px oklch(0 0 0 / 0.05);
   --card-backdrop: none;
-  --card-hover-transform: none;
+  --card-hover-transform: translateY(-1px);
 
   /* ── Spacing / Density Tokens ────────────────────────────────
-     Layout Builder overrides for compact / standard / spacious feel.
-
-     Compact:  --nav-item-py: 0.375rem, --content-padding: 1rem,   --card-padding: 1rem
-     Standard: --nav-item-py: 0.5rem,   --content-padding: 1.5rem, --card-padding: 1.5rem
-     Spacious: --nav-item-py: 0.625rem, --content-padding: 2rem,   --card-padding: 1.5rem */
+     Standard density — organized card-based layout with clear hierarchy.
+     Compliance officers scan to triage; clear hierarchy > compression.  */
   --page-padding: 1.5rem;
   --card-padding: 1.5rem;
   --card-padding-sm: 1rem;
@@ -177,14 +191,8 @@
   --section-gap: 1.5rem;
 
   /* ── Layout Tokens ───────────────────────────────────────────
-     Sidebar width presets:
-       Slim:     14rem — compact utility or data-dense apps
-       Standard: 16rem — default
-       Wide:     18rem — complex nav, ERP-style
-
-     Header height presets:
-       Compact:  2.75rem
-       Standard: 3.5rem                                           */
+     16rem sidebar — accommodates labels like "Intake & Assessment"
+     and "Document Vault" without truncation at standard font size. */
   --sidebar-width: 16rem;
   --sidebar-collapsed-width: 4rem;
   --sidebar-width-mobile: 18rem;
@@ -193,11 +201,9 @@
   --content-padding: 1.5rem;
   --nav-item-py: 0.5rem;
 
-  /* Sidebar surface — override to tint sidebar by domain:
-     White (default): oklch(1 0 0)
-     Tinted:          oklch(0.985 0.008 var(--primary-h))
-     Subdued:         oklch(0.97 0.005 var(--primary-h))          */
-  --sidebar-bg: oklch(1 0 0);
+  /* Sidebar surface — subtle teal tint signals clinical precision
+     without dominating the white card content area.              */
+  --sidebar-bg: oklch(0.98 0.005 195);
 
   /* Tab bar background — tint to primary hue subtly if desired */
   --tab-bar-bg: var(--background);
@@ -645,34 +651,40 @@
 
 /* ── 11. SaaS Modern / Gradient-Optimistic ───────────────────
    Friendly, approachable, conversion-focused, subtle gradients.
-   Best for: B2B SaaS, HR tech, marketing tech, e-learning.      */
+   Best for: B2B SaaS, HR tech, marketing tech, e-learning.
+   Healthcare Compliance overrides: 0.5rem radius (not 0.75rem),
+   standard density, snappy 120ms motion (Epic-like responsiveness). */
 [data-theme="saas-modern"] {
-  --radius: 0.75rem;
-  --background: oklch(1 0 0);
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.003 var(--primary-h, 195));
   --card: oklch(1 0 0);
-  --border: oklch(0.92 0 0);
+  --border: oklch(0.905 0.008 var(--primary-h, 195));
   --muted: oklch(0.97 0 0);
-  --sidebar: oklch(0.99 0.005 var(--primary-h, 250));
-  --sidebar-bg: oklch(0.99 0.005 var(--primary-h, 250));
-  --surface-hover: oklch(0.96 0 0);
-  --surface-active: oklch(0.94 0 0);
+  --sidebar: oklch(0.98 0.005 var(--primary-h, 195));
+  --sidebar-bg: oklch(0.98 0.005 var(--primary-h, 195));
+  --surface-hover: oklch(0.955 0.006 var(--primary-h, 195));
+  --surface-active: oklch(0.935 0.009 var(--primary-h, 195));
   --card-border-width: 1px;
-  --card-shadow: 0 1px 3px oklch(0 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.04);
-  --card-shadow-hover: 0 4px 12px oklch(0 0 0 / 0.12), 0 2px 4px oklch(0 0 0 / 0.06);
+  --card-shadow: 0 1px 3px oklch(0 0 0 / 0.07), 0 1px 2px oklch(0 0 0 / 0.04);
+  --card-shadow-hover: 0 4px 12px oklch(0 0 0 / 0.10), 0 2px 4px oklch(0 0 0 / 0.05);
   --card-hover-transform: translateY(-1px);
   --page-padding: 1.5rem;
   --content-padding: 1.5rem;
   --card-padding: 1.5rem;
   --grid-gap: 1rem;
-  --section-gap: 2rem;
+  --section-gap: 1.5rem;
   --nav-item-py: 0.5rem;
   --heading-weight: 700;
   --heading-tracking: -0.02em;
   --body-leading: 1.625;
+  /* Snappy motion: 120-150ms ease-out — responsive like Epic, not theatrical */
   --dur-fast: 120ms;
-  --dur-normal: 200ms;
+  --dur-normal: 150ms;
   --ease-snappy: cubic-bezier(0.4, 0, 0.2, 1);
   --t-interactive: var(--dur-fast) var(--ease-snappy);
+  /* Motion token for downstream builders */
+  --transition-base: 130ms ease-out;
+  --transition-slow: 200ms ease-out;
 }
 
 /* ── 12. E-Commerce / Conversion Retail ─────────────────────
@@ -967,6 +979,23 @@
     box-shadow: 2px 2px 0 oklch(0.10 0 0);
   }
 
+}
+
+/* ── Staggered card entrance animation ────────────────────── */
+@keyframes fade-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up-in {
+  animation-name: fade-up-in;
+  animation-timing-function: ease-out;
 }
 
 /* ── Frame utility classes ─────────────────────────────────── */
